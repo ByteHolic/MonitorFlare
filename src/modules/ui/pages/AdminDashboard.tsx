@@ -31,7 +31,7 @@ export function AdminDashboard() {
               </div>
               <div style="display: flex; gap: 8px;">
                 <a href="/" style="padding: 8px 16px; background: white; border: 1px solid #e5e5e5; border-radius: 6px; font-size: 14px; text-decoration: none; color: #000;">
-                  Status Page
+                  Monitoring Overview
                 </a>
                 <button onclick="logout()" style="padding: 8px 16px; background: white; color: #000; border: 1px solid #e5e5e5; border-radius: 6px; font-size: 14px; cursor: pointer;">
                   Logout

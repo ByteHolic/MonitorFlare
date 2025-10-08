@@ -6,7 +6,7 @@ export function MonitorOverview({ isAdmin = false }: { isAdmin?: boolean }) {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Monitor Overview</title>
+        <title>Monitoring Overview</title>
         <link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.min.css" rel="stylesheet" />
         <script src="https://cdn.tailwindcss.com"></script>
         <style>{`
@@ -34,7 +34,7 @@ export function MonitorOverview({ isAdmin = false }: { isAdmin?: boolean }) {
           <div style="max-width: 1400px; margin: 0 auto;">
             <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 50px; flex-wrap: wrap; gap: 20px;">
               <div>
-                <h1 style="font-size: 36px; font-weight: 600; margin: 0 0 12px 0;">Monitor Overview</h1>
+                <h1 style="font-size: 36px; font-weight: 600; margin: 0 0 12px 0;">Monitoring Overview</h1>
                 <div style="display: flex; align-items: center; gap: 8px;">
                   <div id="status-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></div>
                   <p style="font-size: 14px; color: #666; margin: 0;" id="status-text">All systems operational</p>

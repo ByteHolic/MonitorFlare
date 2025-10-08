@@ -13,7 +13,7 @@ export const monitoringRoutes = new Elysia({ prefix: '/api' })
     const healthRepository = new HealthRepository(db);
     return { monitoringService: service, healthRepository };
   })
-  
+
   .post('/services', async ({ body, monitoringService }) => {
     try {
       const result = await monitoringService.createService(body as any);
@@ -26,20 +26,21 @@ export const monitoringRoutes = new Elysia({ prefix: '/api' })
       );
     }
   })
-  
-  .get('/services', async ({ monitoringService }) => {
-    try {
-      const services = await monitoringService.getAllServices();
-      return services.map(s => ({ ...s, uptime: 100 }));
-    } catch (error) {
-      console.error('[Monitoring] Get all error:', error);
-      return ResponseHelper.error(
-        error instanceof Error ? error.message : 'Unknown error',
-        500
-      );
-    }
+
+  .get('/services', async ({ monitoringService, healthRepository }) => {
+    const services = await monitoringService.getAllServices();
+
+    const servicesWithUptime = await Promise.all(
+      services.map(async (s) => {
+        const uptime = await healthRepository.calculateUptime(s.id);
+        return { ...s, uptime };
+      })
+    );
+
+    return servicesWithUptime;
   })
-  
+
+
   .get('/services/:id', async ({ params, monitoringService }) => {
     try {
       const service = await monitoringService.getServiceById(params.id);
@@ -55,7 +56,7 @@ export const monitoringRoutes = new Elysia({ prefix: '/api' })
       );
     }
   })
-  
+
   .get('/services/:id/checks', async ({ params, healthRepository }) => {
     try {
       return await healthRepository.getHealthChecks(params.id);
@@ -67,7 +68,7 @@ export const monitoringRoutes = new Elysia({ prefix: '/api' })
       );
     }
   })
-  
+
   .put('/services/:id', async ({ params, body, monitoringService }) => {
     try {
       await monitoringService.updateService(params.id, body as any);
@@ -80,7 +81,7 @@ export const monitoringRoutes = new Elysia({ prefix: '/api' })
       );
     }
   })
-  
+
   .delete('/services/:id', async ({ params, monitoringService }) => {
     try {
       await monitoringService.deleteService(params.id);
