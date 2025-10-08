@@ -6,6 +6,8 @@ powered by **Cloudflare Workers, Elysia (Bun runtime), Drizzle ORM, and D1 SQLit
 Includes a public status page, live monitoring, per-service health views, admin dashboard, and incident notifications via Telegram and Slack.
 
 ---
+![MonitorFlare](.github/monitorflare.jpg)
+---
 
 ## ✨ Features
 
