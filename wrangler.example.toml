@@ -1,0 +1,17 @@
+name = "monitorflare"
+main = "src/index.ts"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat_v2"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "monitorflare"
+database_id = "xxxxxx-xxxx-xxxx-xxxx-xxxxxxx"
+
+[vars]
+BASE_URL = "https://monitorflare.namespace.workers.dev"
+ADMIN_USERNAME = "admin"
+ADMIN_PASSWORD = "admin"
+
+[triggers]
+crons = ["* * * * *"]

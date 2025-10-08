@@ -40,3 +40,14 @@ yarn-error.log*
 **/*.log
 package-lock.json
 **/*.bun
+
+
+node_modules/
+.wrangler/
+dist/
+.dev.vars
+.env
+*.db
+*.db-shm
+*.db-wal
+wrangler.toml

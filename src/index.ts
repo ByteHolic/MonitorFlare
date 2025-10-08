@@ -1,7 +1,14 @@
-import { Elysia } from "elysia";
+import { createApp } from './app';
+import { HealthScheduler } from '@/modules/health';
+import type { Env } from '@/shared/types';
 
-const app = new Elysia().get("/", () => "Hello Elysia").listen(3000);
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    return createApp(env).handle(request);
+  },
 
-console.log(
-  `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-);
+  async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
+    const scheduler = new HealthScheduler(env);
+    ctx.waitUntil(scheduler.run());
+  },
+};
